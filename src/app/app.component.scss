@@ -1,0 +1,30 @@
+@import '../assets/variables';
+
+.container{
+  padding:  30px 100px;
+}
+
+.bottom{
+    padding-bottom: 20px;
+}
+
+.topNav{
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    background-color: $red;
+    position: relative;
+    min-height: 50px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+h1{
+  color:#fff;
+  text-shadow: 1px 1px black;
+}
+
+// @media screen and (max-width: 1000px) {
+//     .container{
+//         padding:  30px 0px;
+//       }
+// }

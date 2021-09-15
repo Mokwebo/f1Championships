@@ -1,0 +1,9 @@
+<div fxLayout="row" class="bottom">
+    <form  [formGroup]="setupForm">
+        <label for="years">Select Year (Season)</label>
+        <select formControlName="dropDown" (change)="changeCity()" id="years">
+           <option disabled value="" selected>Please select a year</option>
+           <option *ngFor="let year of years" value="{{year}}">{{year}} Season</option>
+        </select>
+     </form>
+</div>

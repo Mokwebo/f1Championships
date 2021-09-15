@@ -1,0 +1,18 @@
+<table id="customers">
+    <tr>
+      <th *ngFor="let head of headers">{{head}}</th>
+    </tr>
+
+    <tr *ngFor="let f1Data of wonMultipleArray" [ngStyle]="{'background-color':f1Data.highlight? f1Data.color : '#FFF' }"> 
+      <td>{{f1Data.raceName}}</td>
+      <td>{{f1Data.pos}}</td>
+      <td>{{f1Data.no}}</td>
+      <td>{{f1Data.driver}}</td>
+      <td>{{f1Data.constructor}}</td>
+      <td>{{f1Data.laps}}</td>
+      <td>{{f1Data.grid}}</td>
+      <td>{{f1Data.time}}</td>
+      <td>{{f1Data.status}}</td>
+      <td>{{f1Data.points}}</td>
+    </tr>
+  </table>
