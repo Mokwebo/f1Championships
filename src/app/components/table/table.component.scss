@@ -42,3 +42,9 @@
   font-weight: bold;
   color: $red;
 }
+
+@media screen and (max-width: 1000px) {
+  .styled-table th, .styled-table td {
+    padding: 5px 5px;
+}
+}
