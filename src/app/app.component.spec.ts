@@ -1,5 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { async, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { ApiService } from './services/api.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -7,25 +9,56 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [HttpClientModule],
+      providers: [ApiService]
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+  it('AppComponent is created', () => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'f1-championships'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('f1-championships');
+  it('StartYear must be initialized', () => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.componentInstance;
+    expect(app.startYear).toEqual(2005);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('Should render title', () => {
+    let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('f1-championships app is running!');
+    let compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.topNavTitle').textContent).toContain('Formula 1 Championships');
   });
+
+  it('H1 tag should contain text', () => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    let compiled = fixture.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Season: ');
+  })
+
+  it('Second H1 tag should read no data found', () => {
+    let fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    let compiled = fixture.nativeElement;
+    expect(compiled.querySelector('#data').textContent).toContain('No data found');
+  })
+
+  it('Array must not be null/empty', ()=> {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    expect(app.parsedArray).toBeDefined();
+  })
+
+  it('Check if we have values in our years array', () =>{
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    expect(app.years.length).toBeGreaterThan(1)
+  })
 });

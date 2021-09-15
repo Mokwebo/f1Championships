@@ -6,10 +6,9 @@ import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/cor
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  @Input() data:any;
+  @Input() data:any = [];
   @Input() headers:any;
 
-  colorPiker = ['#FF9C33', '#FFF633', '#BBFF33', '#33FFCE', '#09BACC','#ABCC09'];
   driverArray:any = [];
   wonMultipleArray:any = [];
   wonObj:any = {};
@@ -42,8 +41,7 @@ export class TableComponent implements OnInit {
             raceName: data.raceName,
             status: data.status,
             time: data.time,
-            highlight: true,
-            color: '#78BCC4'
+            highlight: true
           });
         } else {
           this.wonMultipleArray.push({
@@ -61,7 +59,5 @@ export class TableComponent implements OnInit {
           });
         }
     });
-
-    console.log('won', this.wonMultipleArray)
   }
 }

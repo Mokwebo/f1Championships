@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
-  @Input() years:any;
+  @Input() years!:Array<any>;
   @Output() selectedYear = new EventEmitter();
 
   public setupForm!:FormGroup;

@@ -9,8 +9,7 @@
 }
 
 .topNav{
-    background-color: #f8f8f8;
-    border-color: #e7e7e7;
+    border-color: $border;
     background-color: $red;
     position: relative;
     min-height: 50px;
@@ -18,9 +17,14 @@
     border: 1px solid transparent;
 }
 
+.topNavTitle {
+  text-align: center; 
+  color: $white;
+}
+
 h1{
-  color:#fff;
-  text-shadow: 1px 1px black;
+  color:$white;
+  text-shadow: 1px 1px $black;
 }
 
 // @media screen and (max-width: 1000px) {

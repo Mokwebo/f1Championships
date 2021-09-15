@@ -1,9 +1,11 @@
-<table id="customers">
+<table class="styled-table">
+  <thead>
     <tr>
       <th *ngFor="let head of headers">{{head}}</th>
     </tr>
-
-    <tr *ngFor="let f1Data of wonMultipleArray" [ngStyle]="{'background-color':f1Data.highlight? f1Data.color : '#FFF' }"> 
+  </thead>
+  <tbody>
+    <tr *ngFor="let f1Data of wonMultipleArray" [ngClass]="f1Data.highlight? 'active-row' : '' "> 
       <td>{{f1Data.raceName}}</td>
       <td>{{f1Data.pos}}</td>
       <td>{{f1Data.no}}</td>
@@ -15,4 +17,5 @@
       <td>{{f1Data.status}}</td>
       <td>{{f1Data.points}}</td>
     </tr>
+  </tbody>
   </table>

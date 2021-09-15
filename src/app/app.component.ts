@@ -10,13 +10,12 @@ import * as xml2js from 'xml2js';
 
 export class AppComponent implements OnInit {
 
-  title = 'f1-championships';
   public parseData:any;
   public parsedArray = Array();
   public cacheArray = Array();
-  public years:any = [];
+  public years:any = Array();
 
-  public selectedYear = 2005;
+  public selectedYear:any;
   public startYear = 2005;
   public loading = false;
   public tableHeaders:any = [];
@@ -25,21 +24,31 @@ export class AppComponent implements OnInit {
   constructor(public api: ApiService){}
 
   ngOnInit(){
-    this.getRecords(this.selectedYear);
     this.generateYears();
   }
 
   generateYears(){
     const currentYear = this.date.getFullYear();
-    while(this.startYear <= currentYear){
-      this.years.push(this.startYear);
-      this.startYear++;
+    let dupStartYear = this.startYear;
+    while(dupStartYear <= currentYear){
+      this.years.push(dupStartYear);
+      dupStartYear++;
     }
   }
 
   changeSeason(event:number){
+    this.loading = true;
     this.selectedYear = event;
-    this.getRecords(this.selectedYear);
+
+    const cache = this.cacheArray.filter(data => data.selectedYear === event); 
+    if(cache.length > 0){
+      this.parsedArray = cache;
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
+    } else {
+      this.getRecords(this.selectedYear);
+    }
   }
 
   getRecords(year: number){
@@ -60,23 +69,21 @@ export class AppComponent implements OnInit {
                 raceName: data['RaceName'][0],
                 pos: data['ResultsList'][0]['Result'][0]['$']['position'],
                 no: data['ResultsList'][0]['Result'][0]['$']['number'],
-                driver: data['ResultsList'][0]['Result'][0]['Driver'][0]['GivenName'][0], //+ FamilyName
+                driver: data['ResultsList'][0]['Result'][0]['Driver'][0]['GivenName'][0] + " " + data['ResultsList'][0]['Result'][0]['Driver'][0]['FamilyName'][0],
                 constructor: data['ResultsList'][0]['Result'][0]['Constructor'][0]['Name'][0],
                 laps: data['ResultsList'][0]['Result'][0]['Laps'][0],
                 grid: data['ResultsList'][0]['Result'][0]['Grid'][0],
                 time: data['ResultsList'][0]['Result'][0]['Time'][0]['_'],
                 status: data['ResultsList'][0]['Result'][0]['Status'][0]['_'],
                 points: data['ResultsList'][0]['Result'][0]['$']['points'],
+                selectedYear: this.selectedYear
               })
             }
           )
-          this.cacheArray = this.parsedArray;
+          this.cacheArray = this.cacheArray.concat(this.parsedArray);
+          this.loading = false;
         })
       }
     )
-
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
   }
 }

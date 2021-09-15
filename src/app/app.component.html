@@ -1,7 +1,6 @@
 <div class="topNav">
-  <h3><p style="text-decoration: none; text-align: center; color: #fff;">Fomular 1</p></h3>
+  <h3><p class="topNavTitle">Formula 1 Championships</p></h3>
 </div>
-<!-- [ngStyle]="{backgroundImage:'url(../assets/images/image.jpg)'; opacity 0.2}" -->
 <div class="container" >
     <div fxLayout="row">
       <app-dropdown [years]="years" (selectedYear)="changeSeason($event)"></app-dropdown>
@@ -13,8 +12,8 @@
       <h1>Season: {{this.selectedYear}}</h1>
     </div>
 
-    <div fxLayout="row">
-      <h1 *ngIf="parsedArray.length == 0"> No data found</h1>
+    <div>
+      <h1 id="data" *ngIf="!loading && parsedArray.length == 0">No data found</h1>
       <app-table *ngIf="!loading && parsedArray.length > 0" [data]="parsedArray" [headers]="tableHeaders"></app-table>
     </div>  
 </div>
