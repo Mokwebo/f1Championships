@@ -9,13 +9,16 @@ export class TableComponent implements OnInit {
   @Input() data:any = [];
   @Input() headers:any;
 
-  driverArray:any = [];
-  wonMultipleArray:any = [];
-  wonObj:any = {};
+  private driverArray:any = [];
+  public wonMultipleArray:any = [];
+  private wonObj:any = {};
+  public tableHeaders:any;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.tableHeaders = this.headers;
+
     this.data.map(
       (data:any) => {
         this.driverArray.push(data.driver);

@@ -11,11 +11,14 @@ export class DropdownComponent implements OnInit {
   @Output() selectedYear = new EventEmitter();
 
   public setupForm!:FormGroup;
+  public dropdownOptions:Array<any> = [];
+  public emitYear:any;
 
   constructor() { }
 
   ngOnInit(): void {
     this.createSetupForm();
+    this.dropdownOptions = this.years;
   }
 
   createSetupForm(){
@@ -25,8 +28,8 @@ export class DropdownComponent implements OnInit {
   }
 
   changeCity(){
-    // alert(this.setupForm.controls['dropDown'].value)
-    this.selectedYear.emit(this.setupForm.controls['dropDown'].value);
+    this.emitYear = this.setupForm.controls['dropDown'].value;
+    this.selectedYear.emit(this.emitYear);
   }
 
 }

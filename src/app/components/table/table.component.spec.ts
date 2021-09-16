@@ -22,4 +22,16 @@ describe('TableComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Headers must contain atleast 1 column', ()=> {
+    component.tableHeaders = ['Number', 'Name', 'Age'];
+    fixture.detectChanges();
+    expect(component.tableHeaders.length).toBeGreaterThan(0);
+  })
+
+  it('Table must contain atleast 1 row of data', ()=> {
+    component.wonMultipleArray = [{no: 1, Name: 'Mpho', age: 99 }];
+    fixture.detectChanges();
+    expect(component.wonMultipleArray.length).toBeGreaterThan(0);
+  })
 });
