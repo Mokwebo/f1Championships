@@ -2,8 +2,7 @@
 body {  
     font-size: 16px;
     font-family: Tisa Sans Pro Regular;
-    // background-image: url("assets/images/image1.jpg");
-    background: url("assets/images/image1.jpg") no-repeat center center fixed; 
+    background: linear-gradient(rgba(255, 255, 255, 0.438), rgba(255, 255, 255, 0.438)), url("assets/images/image1.jpg") no-repeat center center fixed, ; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
